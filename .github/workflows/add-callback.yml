@@ -1,0 +1,45 @@
+name: 🧠 Upload callback.html to root
+
+on:
+  workflow_dispatch:  # Manual trigger from GitHub UI
+
+jobs:
+  add-callback:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: ⬇️ Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: 📄 Create callback.html file
+      run: |
+        echo '<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jan AI Callback</title>
+</head>
+<body style="text-align:center; font-family:sans-serif; margin-top:50px;">
+  <h2>🔁 Jan AI Callback</h2>
+  <div id="result">Waiting for authorization code...</div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+
+    if (code) {
+      document.getElementById("result").innerText = "✅ Authorization Code received: " + code;
+    } else {
+      document.getElementById("result").innerText = "❌ No authorization code found in the URL.";
+    }
+  </script>
+</body>
+</html>' > callback.html
+
+    - name: 🚀 Commit & Push callback.html
+      run: |
+        git config user.name "Jan AI Bot"
+        git config user.email "bot@jan.ai"
+        git add callback.html
+        git commit -m "✅ Add callback.html for OAuth"
+        git push
