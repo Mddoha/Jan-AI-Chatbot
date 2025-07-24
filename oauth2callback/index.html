@@ -1,12 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Callback - Jan AI</title>
+  <title>OAuth Callback</title>
 </head>
-<body style="text-align:center; font-family:sans-serif; margin-top:50px;">
-  <h1>✅ Jan AI Callback Active!</h1>
-  <p>This page confirms Jan AI is working.</p>
+<body>
+  <h2>✅ Authorization Success! You may close this tab.</h2>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+    if (code) {
+      console.log("OAuth Code:", code);
+      // তুমি চাইলে এখানে fetch দিয়ে গিটহাব বা বট সার্ভারে পাঠাতে পারো
+    } else {
+      console.error("No code in callback URL");
+    }
+  </script>
 </body>
 </html>
