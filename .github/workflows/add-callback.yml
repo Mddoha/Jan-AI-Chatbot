@@ -1,37 +1,39 @@
-name: Add callback.html to root
+name: Add Callback Page
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
-  add-callback:
+  deploy-callback:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Create callback.html file
+      - name: Create callback.html
         run: |
+          mkdir -p callback
           echo '<!DOCTYPE html>
           <html lang="en">
           <head>
-            <meta charset="UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-            <title>Jan AI Callback</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Callback - Jan AI</title>
           </head>
-          <body style="text-align:center; font-family:sans-serif; margin-top: 50px;">
-            <h1>✅ Jan AI Callback Page</h1>
-            <p>This is the callback page for webhook or Blogger actions.</p>
+          <body style="text-align: center; font-family: sans-serif; margin-top: 50px;">
+            <h1>✅ Jan AI Callback Active!</h1>
+            <p>This page confirms that Jan AI system is functioning properly.</p>
+            <a href="https://t.me/JanAIChatbot">Go to Jan AI Telegram Bot 🚀</a>
           </body>
           </html>' > callback.html
 
-      - name: Commit & push callback.html
+      - name: Commit and Push callback.html
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
           git add callback.html
-          git commit -m "🚀 Add callback.html file from GitHub Action"
+          git commit -m "Add callback.html"
           git push
