@@ -1,23 +1,12 @@
-<!-- Jan-AI-Chatbot/callback.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Jan AI Callback</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Callback - Jan AI</title>
 </head>
 <body style="text-align:center; font-family:sans-serif; margin-top:50px;">
-  <h2>🔁 Jan AI Callback</h2>
-  <div id="result">Waiting for authorization code...</div>
-
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const code = params.get("code");
-
-    if (code) {
-      document.getElementById("result").innerText = "✅ Authorization Code received: " + code;
-    } else {
-      document.getElementById("result").innerText = "❌ No authorization code found in the URL.";
-    }
-  </script>
+  <h1>✅ Jan AI Callback Active!</h1>
+  <p>This page confirms Jan AI is working.</p>
 </body>
 </html>
