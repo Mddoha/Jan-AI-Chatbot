@@ -1,45 +1,37 @@
-name: 🧠 Upload callback.html to root
+name: Add callback.html to root
 
 on:
-  workflow_dispatch:  # Manual trigger from GitHub UI
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   add-callback:
     runs-on: ubuntu-latest
-
     steps:
-    - name: ⬇️ Checkout Repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: 📄 Create callback.html file
-      run: |
-        echo '<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Jan AI Callback</title>
-</head>
-<body style="text-align:center; font-family:sans-serif; margin-top:50px;">
-  <h2>🔁 Jan AI Callback</h2>
-  <div id="result">Waiting for authorization code...</div>
+      - name: Create callback.html file
+        run: |
+          echo '<!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <title>Jan AI Callback</title>
+          </head>
+          <body style="text-align:center; font-family:sans-serif; margin-top: 50px;">
+            <h1>✅ Jan AI Callback Page</h1>
+            <p>This is the callback page for webhook or Blogger actions.</p>
+          </body>
+          </html>' > callback.html
 
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const code = params.get("code");
-
-    if (code) {
-      document.getElementById("result").innerText = "✅ Authorization Code received: " + code;
-    } else {
-      document.getElementById("result").innerText = "❌ No authorization code found in the URL.";
-    }
-  </script>
-</body>
-</html>' > callback.html
-
-    - name: 🚀 Commit & Push callback.html
-      run: |
-        git config user.name "Jan AI Bot"
-        git config user.email "bot@jan.ai"
-        git add callback.html
-        git commit -m "✅ Add callback.html for OAuth"
-        git push
+      - name: Commit & push callback.html
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add callback.html
+          git commit -m "🚀 Add callback.html file from GitHub Action"
+          git push
