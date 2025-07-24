@@ -1,20 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8" />
-  <title>OAuth Callback</title>
+  <title>Done</title>
 </head>
 <body>
-  <h2>✅ Authorization Success! You may close this tab.</h2>
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const code = params.get("code");
-    if (code) {
-      console.log("OAuth Code:", code);
-      // তুমি চাইলে এখানে fetch দিয়ে গিটহাব বা বট সার্ভারে পাঠাতে পারো
-    } else {
-      console.error("No code in callback URL");
-    }
-  </script>
+  <h2>✅ Authorization Done!</h2>
+  <p>You can now go back to Telegram or Blogger.</p>
 </body>
 </html>
