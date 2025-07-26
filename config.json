@@ -1,0 +1,11 @@
+{
+  "TELEGRAM_TOKEN": "তোমার_টেলিগ্রাম_বট_টোকেন",
+  "OWNER_UID": 7158473495,
+  "CEO_UID": 7158473495,
+  "ADMIN_UIDS": [7158473495],
+  "GITHUB_TOKEN": "ghp_তোমার_সিক্রেট_টোকেন_এখানে",
+  "GITHUB_REPO": "Mddoha/Jan-AI-Chatbot",
+  "BLOGGER_CLIENT_ID": "536620266491-xxxxxxxxxxxxxxxxxxxxxxxxxxxx.apps.googleusercontent.com",
+  "BLOGGER_CLIENT_SECRET": "তোমার_ব্লগার_CLIENT_SECRET",
+  "BLOGGER_REFRESH_TOKEN": "তোমার_REFRESH_TOKEN"
+}
