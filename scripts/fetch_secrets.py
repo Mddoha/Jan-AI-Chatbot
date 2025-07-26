@@ -1,17 +1,27 @@
-import requests
+# scripts/fetch_secrets.py
+
 import os
+import requests
 
-URL = "https://raw.githubusercontent.com/Mddoha/Jan-AI-Secrets/main/raw/.secrets"
-OUTDIR = "secrets"
+# Load GitHub Token from Actions Secret
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
+REPO = "Mddoha/Jan-AI-Secrets"
+FILES = ["telegram_token.txt", "github_token.txt", "google_client_id.txt"]
+BRANCH = "main"
 
-def main():
-    os.makedirs(OUTDIR, exist_ok=True)
-    resp = requests.get(URL)
-    lines = resp.text.strip().split("\n")
-    for line in lines:
-        key, val = line.split("=", 1)
-        with open(f"{OUTDIR}/{key.strip()}.txt", "w") as f:
-            f.write(val.strip())
+headers = {
+    "Authorization": f"token {GITHUB_TOKEN}",
+    "Accept": "application/vnd.github.v3.raw"
+}
 
-if __name__ == "__main__":
-    main()
+os.makedirs("secrets", exist_ok=True)
+
+for file_name in FILES:
+    url = f"https://api.github.com/repos/{REPO}/contents/{file_name}?ref={BRANCH}"
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        with open(f"secrets/{file_name}", "wb") as f:
+            f.write(response.content)
+        print(f"✅ Downloaded {file_name}")
+    else:
+        print(f"❌ Failed to fetch {file_name}: {response.status_code}")
